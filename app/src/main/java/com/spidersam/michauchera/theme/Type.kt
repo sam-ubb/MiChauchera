@@ -1,4 +1,4 @@
-package com.spidersam.michauchera.ui.theme
+package com.spidersam.michauchera.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

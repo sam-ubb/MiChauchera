@@ -1,4 +1,4 @@
-package com.spidersam.michauchera.ui.theme
+package com.spidersam.michauchera.theme
 
 import androidx.compose.ui.graphics.Color
 
