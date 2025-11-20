@@ -22,6 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AddTransactionActivity"
+            android:exported="false"
+            android:label="Nueva Transacción"
+            android:theme="@style/Theme.MiChauchera"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
