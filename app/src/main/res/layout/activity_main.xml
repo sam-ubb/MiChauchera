@@ -1,50 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".MainActivity">
 
+    <!-- Título de la aplicación -->
     <TextView
+        android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MiChauchera"
         android:textSize="24sp"
-        android:layout_marginBottom="16dp"/>
+        android:textColor="#ffffff"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- Saldo Total -->
     <TextView
         android:id="@+id/tvSaldoTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Saldo total: $0"
-        android:textSize="18sp"/>
+        android:text="Saldo Total: $1082500"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        app:layout_constraintTop_toBottomOf="@id/tvTitulo"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- Ingresos del Mes -->
+    <TextView
+        android:id="@+id/tvIngresos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingresos del Mes: $350000"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        app:layout_constraintTop_toBottomOf="@id/tvSaldoTotal"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Gastos del Mes -->
+    <TextView
+        android:id="@+id/tvGastos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gastos del Mes: $467500"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        app:layout_constraintTop_toBottomOf="@id/tvIngresos"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Balance del Mes -->
     <TextView
         android:id="@+id/tvBalanceMes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Balance mes: $0"
-        android:textSize="16sp"
-        android:layout_marginTop="8dp"/>
+        android:text="Balance del Mes: $-117500"
+        android:textSize="18sp"
+        android:textColor="#ff0000"
+        app:layout_constraintTop_toBottomOf="@id/tvGastos"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- Desglose por Categoria -->
     <TextView
+        android:id="@+id/tvDesglose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Últimas transacciones"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp"/>
+        android:text="Desglose por Categoría"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        app:layout_constraintTop_toBottomOf="@id/tvBalanceMes"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- Lista de categorias (solo agregamos un ejemplo de categorias) -->
+    <TextView
+        android:id="@+id/tvMesada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mesada: $350000 (1 transacción)"
+        android:textSize="16sp"
+        android:textColor="#ffffff"
+        app:layout_constraintTop_toBottomOf="@id/tvDesglose"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvEducacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Educación: $120000 (1 transacción)"
+        android:textSize="16sp"
+        android:textColor="#ffffff"
+        app:layout_constraintTop_toBottomOf="@id/tvMesada"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Botones para añadir transacción y ver historial -->
     <Button
         android:id="@+id/btnAddTransaction"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Añadir Transacción"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintTop_toBottomOf="@id/tvEducacion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnHistorial"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Historial"
-        android:layout_marginTop="8dp"/>
-</LinearLayout>
+        android:text="Ver Historial"
+        app:layout_constraintTop_toBottomOf="@id/btnAddTransaction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
