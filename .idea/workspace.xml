@@ -5,6 +5,11 @@
       <config />
     </shared>
     <layouts>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_configuracion.xml">
+        <config>
+          <theme>@style/Theme.MiChauchera</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_historial.xml">
         <config>
           <theme>@style/Theme.MiChauchera</theme>
@@ -20,20 +25,34 @@
           <theme>@style/Theme.MiChauchera</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_transaccion.xml">
+        <config>
+          <theme>@style/Theme.MiChauchera</theme>
+        </config>
+      </layout>
     </layouts>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13fe1a08-ef5c-4baf-af84-1e8deeedd49e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/spidersam/michauchera/HistorialActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_historial.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_nueva_transaccion.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/spidersam/michauchera/AddTransactionActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/spidersam/michauchera/NuevaTransaccionActivity.kt" afterDir="false" />
+    <list default="true" id="13fe1a08-ef5c-4baf-af84-1e8deeedd49e" name="Changes" comment="Implementacion de flujo de transacciones y pantalla de historial, registro de transacciones y vista de historial con RecyclerView, Integracion de modelo, repositorio y pantallas de registro/historial">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/spidersam/michauchera/ConfiguracionActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/spidersam/michauchera/TransaccionesAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/spidersam/michauchera/model/RepositorioTransacciones.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_configuracion.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_transaccion.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/spidersam/michauchera/HistorialActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/spidersam/michauchera/HistorialActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/spidersam/michauchera/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/spidersam/michauchera/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/spidersam/michauchera/NuevaTransaccionActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/spidersam/michauchera/NuevaTransaccionActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/spidersam/michauchera/model/transaccion.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/spidersam/michauchera/model/Transaccion.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_historial.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_historial.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_nueva_transaccion.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_nueva_transaccion.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +71,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Kotlin File" />
         <option value="layoutResourceFile" />
         <option value="Kotlin Class" />
       </list>
@@ -192,6 +212,10 @@
     </task>
     <servers />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implementacion de flujo de transacciones y pantalla de historial, registro de transacciones y vista de historial con RecyclerView, Integracion de modelo, repositorio y pantallas de registro/historial" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementacion de flujo de transacciones y pantalla de historial, registro de transacciones y vista de historial con RecyclerView, Integracion de modelo, repositorio y pantallas de registro/historial" />
+  </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
       <option value=".github/instructions" />
@@ -205,12 +229,12 @@
       <map>
         <entry key="com.spidersam.michauchera">
           <value>
-            <CheckInfo lastCheckTimestamp="1763663953530" />
+            <CheckInfo lastCheckTimestamp="1764095744319" />
           </value>
         </entry>
         <entry key="com.spidersam.michauchera.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1763663953518" />
+            <CheckInfo lastCheckTimestamp="1764095744321" />
           </value>
         </entry>
       </map>

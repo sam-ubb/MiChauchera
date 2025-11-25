@@ -1,6 +1,7 @@
 package com.spidersam.michauchera
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
@@ -8,6 +9,9 @@ import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.spidersam.michauchera.model.RepositorioTransacciones
+import com.spidersam.michauchera.model.TipoTransaccion
+import com.spidersam.michauchera.model.Transaccion
 
 class NuevaTransaccionActivity : AppCompatActivity() {
 
@@ -24,40 +28,87 @@ class NuevaTransaccionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nueva_transaccion)
 
-        // Inicializacion de los elementos de la UI
+        // Inicializamos los elementos de la UI
         grupoTipoTransaccion = findViewById(R.id.grupoTipoTransaccion)
-        campoMonto = findViewById(R.id.etMonto)
+        campoMonto = findViewById(R.id.campoMonto)
         spinnerCategoria = findViewById(R.id.spinnerCategoria)
-        campoFecha = findViewById(R.id.etFecha)
-        campoDescripcion = findViewById(R.id.etDescripcion)
-        botonCancelar = findViewById(R.id.btnCancelar)
-        botonGuardar = findViewById(R.id.btnGuardar)
+        campoFecha = findViewById(R.id.campoFecha)
+        campoDescripcion = findViewById(R.id.campoDescripcion)
+        botonCancelar = findViewById(R.id.botonCancelar)
+        botonGuardar = findViewById(R.id.botonGuardar)
 
-        // Config del boton Cancelar
+        configurarSpinnerCategorias()
         botonCancelar.setOnClickListener {
             finish()
         }
-
-        // Config del boton Guardar
         botonGuardar.setOnClickListener {
-            val tipoTransaccion = findViewById<RadioButton>(grupoTipoTransaccion.checkedRadioButtonId).text.toString()
-            val monto = campoMonto.text.toString().toIntOrNull() ?: 0
-            val categoria = spinnerCategoria.selectedItem.toString()
-            val fecha = campoFecha.text.toString()
-            val descripcion = campoDescripcion.text.toString()
-
-            // Por ahora solo mostramos los datos en la consola o actualizamos la UI
-
-            if (monto == 0 || categoria == "Seleccionar una categoría" || fecha.isEmpty()) {
-                // Mostrar un mensaje de error si faltan datos
-                Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
-            } else {
-                // Mostrar los datos de la transaccion
-                println("Tipo: $tipoTransaccion, Monto: $monto, Categoría: $categoria, Fecha: $fecha, Descripción: $descripcion")
-
-                // Volver a la actividad principal (o actualizar la UI)
-                finish()
-            }
+            guardarTransaccion()
         }
+    }
+
+    private fun configurarSpinnerCategorias() {
+        val categorias = listOf(
+            "Educación",
+            "Alimentación",
+            "Servicios",
+            "Salud",
+            "Entretenimiento",
+            "Otros"
+        )
+
+        val adaptador = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            categorias
+        )
+        adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerCategoria.adapter = adaptador
+    }
+
+    private fun guardarTransaccion() {
+        val idSeleccionado = grupoTipoTransaccion.checkedRadioButtonId
+        if (idSeleccionado == -1) {
+            Toast.makeText(this, "Seleccione si es ingreso o gasto", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val textoTipo = findViewById<RadioButton>(idSeleccionado).text.toString()
+        val textoMonto = campoMonto.text.toString()
+        val categoria = spinnerCategoria.selectedItem?.toString() ?: ""
+        val fecha = campoFecha.text.toString()
+        val descripcion = campoDescripcion.text.toString()
+
+        if (textoMonto.isBlank() || categoria.isBlank() || fecha.isBlank()) {
+            Toast.makeText(this, "Por favor, complete monto, categoría y fecha", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val monto = textoMonto.toIntOrNull()
+        if (monto == null || monto <= 0) {
+            Toast.makeText(this, "El monto debe ser un entero mayor que 0", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Convertimos texto a enum
+        val tipo = if (textoTipo == "Ingreso") {
+            TipoTransaccion.INGRESO
+        } else {
+            TipoTransaccion.GASTO
+        }
+
+        // Creamos el objeto Transaccion
+        val transaccion = Transaccion(
+            tipo = tipo,
+            monto = monto,
+            categoria = categoria,
+            fecha = fecha,
+            descripcion = if (descripcion.isBlank()) null else descripcion
+        )
+
+        // Guardamos en memoria
+        RepositorioTransacciones.agregarTransaccion(transaccion)
+
+        Toast.makeText(this, "Transacción guardada", Toast.LENGTH_SHORT).show()
+        finish()
     }
 }

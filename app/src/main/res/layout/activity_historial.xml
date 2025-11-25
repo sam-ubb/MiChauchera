@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -23,6 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Buscar por categoría, monto o fecha"
+        android:inputType="text"
         app:layout_constraintTop_toBottomOf="@id/tvTituloHistorial"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -40,12 +40,15 @@
             android:id="@+id/rbTodos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Todos" />
+            android:text="Todos"
+            android:checked="true" />
+
         <RadioButton
             android:id="@+id/rbIngresos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ingresos" />
+
         <RadioButton
             android:id="@+id/rbGastos"
             android:layout_width="wrap_content"
@@ -68,7 +71,7 @@
             android:layout_height="wrap_content"
             android:hint="Desde"
             android:inputType="date"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <EditText
             android:id="@+id/etFechaHasta"
@@ -76,7 +79,7 @@
             android:layout_height="wrap_content"
             android:hint="Hasta"
             android:inputType="date"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
     </LinearLayout>
 
     <Spinner
@@ -85,7 +88,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/llFechas"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewTransacciones"
@@ -94,7 +97,7 @@
         app:layout_constraintTop_toBottomOf="@id/spinnerOrdenarPor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tvResumen"/>
+        app:layout_constraintBottom_toTopOf="@id/tvResumen" />
 
     <TextView
         android:id="@+id/tvResumen"
@@ -106,4 +109,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

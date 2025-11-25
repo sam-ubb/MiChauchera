@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MiChauchera">
+
+        <!-- Pantalla principal (única con MAIN + LAUNCHER) -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -18,10 +20,22 @@
             android:theme="@style/Theme.MiChauchera">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Nueva Transacción -->
+        <activity
+            android:name=".NuevaTransaccionActivity" />
+
+        <!-- Historial -->
+        <activity
+            android:name=".HistorialActivity" />
+
+        <!-- Configuración -->
+        <activity
+            android:name=".ConfiguracionActivity" />
+
     </application>
 
 </manifest>
