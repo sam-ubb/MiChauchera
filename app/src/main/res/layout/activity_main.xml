@@ -1,115 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <!-- Título de la aplicación -->
-    <TextView
-        android:id="@+id/tvTitulo"
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="MiChauchera" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Tarjeta de Saldo Total -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="?attr/colorPrimaryContainer">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Saldo Total"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:textColor="?attr/colorOnPrimaryContainer" />
+
+                    <TextView
+                        android:id="@+id/tvSaldoTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="$0.00"
+                        android:textAppearance="?attr/textAppearanceHeadlineLarge"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnPrimaryContainer"
+                        tools:text="$12,345.67" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Tarjeta de Balance Mensual -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardElevation="2dp"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Balance del Mes"
+                        android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+                    <TextView
+                        android:id="@+id/tvBalanceMes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="$0.00"
+                        android:textAppearance="?attr/textAppearanceTitleLarge"
+                        android:textStyle="bold"
+                        tools:text="+$1,234.56" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Ingresos"
+                                android:textAppearance="?attr/textAppearanceBodySmall"
+                                android:textColor="?android:attr/textColorSecondary" />
+
+                            <TextView
+                                android:id="@+id/tvIngresos"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="$0.00"
+                                android:textAppearance="?attr/textAppearanceBodyLarge"
+                                android:textColor="@color/income_green"
+                                tools:text="$5,000.00" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Gastos"
+                                android:textAppearance="?attr/textAppearanceBodySmall"
+                                android:textColor="?android:attr/textColorSecondary" />
+
+                            <TextView
+                                android:id="@+id/tvGastos"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="$0.00"
+                                android:textAppearance="?attr/textAppearanceBodyLarge"
+                                android:textColor="@color/expense_red"
+                                tools:text="$3,765.44" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Sección de Transacciones Recientes -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"
+                android:text="Transacciones Recientes"
+                android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTransactions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_transaction"
+                tools:itemCount="5" />
+
+            <TextView
+                android:id="@+id/tvEmptyState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="No hay transacciones aún.\n¡Comienza agregando una!"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                android:textColor="?android:attr/textColorSecondary"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Botón flotante para agregar transacción -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddTransaction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MiChauchera"
-        android:textSize="24sp"
-        android:textColor="#ffffff"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="Agregar transacción"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
-    <!-- Saldo Total -->
-    <TextView
-        android:id="@+id/tvSaldoTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Saldo Total: $1082500"
-        android:textSize="20sp"
-        android:textColor="#ffffff"
-        app:layout_constraintTop_toBottomOf="@id/tvTitulo"
-        app:layout_constraintStart_toStartOf="parent" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <!-- Ingresos del Mes -->
-    <TextView
-        android:id="@+id/tvIngresos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ingresos del Mes: $350000"
-        android:textSize="18sp"
-        android:textColor="#ffffff"
-        app:layout_constraintTop_toBottomOf="@id/tvSaldoTotal"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!-- Gastos del Mes -->
-    <TextView
-        android:id="@+id/tvGastos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Gastos del Mes: $467500"
-        android:textSize="18sp"
-        android:textColor="#ffffff"
-        app:layout_constraintTop_toBottomOf="@id/tvIngresos"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!-- Balance del Mes -->
-    <TextView
-        android:id="@+id/tvBalanceMes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Balance del Mes: $-117500"
-        android:textSize="18sp"
-        android:textColor="#ff0000"
-        app:layout_constraintTop_toBottomOf="@id/tvGastos"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!-- Desglose por Categoria -->
-    <TextView
-        android:id="@+id/tvDesglose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Desglose por Categoría"
-        android:textSize="18sp"
-        android:textColor="#ffffff"
-        app:layout_constraintTop_toBottomOf="@id/tvBalanceMes"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!-- Lista de categorias (solo agregamos un ejemplo de categorias) -->
-    <TextView
-        android:id="@+id/tvMesada"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mesada: $350000 (1 transacción)"
-        android:textSize="16sp"
-        android:textColor="#ffffff"
-        app:layout_constraintTop_toBottomOf="@id/tvDesglose"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tvEducacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Educación: $120000 (1 transacción)"
-        android:textSize="16sp"
-        android:textColor="#ffffff"
-        app:layout_constraintTop_toBottomOf="@id/tvMesada"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!-- Botones para añadir transacción y ver historial -->
-    <Button
-        android:id="@+id/btnAddTransaction"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Añadir Transacción"
-        app:layout_constraintTop_toBottomOf="@id/tvEducacion"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/btnHistorial"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Ver Historial"
-        app:layout_constraintTop_toBottomOf="@id/btnAddTransaction"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
