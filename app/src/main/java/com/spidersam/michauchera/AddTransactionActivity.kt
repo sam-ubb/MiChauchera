@@ -148,12 +148,12 @@ class AddTransactionActivity : AppCompatActivity() {
                 type = type,
                 category = category,
                 date = selectedDate.time,
-                description = if (description.isEmpty()) null else description
+                description = description.ifEmpty { "" }
             )
 
-            // Enviar resultado de vuelta
-            intent.putExtra("transaction", transaction)
-            setResult(RESULT_OK, intent)
+            // Aquí se debería guardar en la base de datos
+            // Por ahora solo cerramos la actividad
+            setResult(RESULT_OK)
 
             return true
         } catch (e: IllegalArgumentException) {

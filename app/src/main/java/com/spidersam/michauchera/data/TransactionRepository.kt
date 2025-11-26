@@ -1,196 +1,147 @@
 package com.spidersam.michauchera.data
-)
-    val year: Int
-    val month: Int,
-    val balance: Double,
-    val expenses: Double,
-    val income: Double,
-data class MonthlyStats(
- */
- * Data class para estadísticas mensuales
-/**
 
-}
-    }
-        return Pair(startDate, endDate)
-
-        val endDate = calendar.time
-        calendar.add(Calendar.MONTH, 1)
-        // Primer día del próximo mes a las 00:00:00
-
-        val startDate = calendar.time
-        calendar.set(Calendar.MILLISECOND, 0)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.MINUTE, 0)
-        calendar.set(Calendar.HOUR_OF_DAY, 0)
-        calendar.set(Calendar.DAY_OF_MONTH, 1)
-        // Primer día del mes a las 00:00:00
-
-        val calendar = Calendar.getInstance()
-    private fun getCurrentMonthRange(): Pair<Date, Date> {
-     */
-     * Obtiene el rango de fechas del mes actual
-    /**
-
-    }
-        require(transaction.category.isNotBlank()) { "Debe seleccionar una categoría" }
-        require(transaction.amount > 0) { "El monto debe ser mayor a 0" }
-    private fun validateTransaction(transaction: Transaction) {
-     */
-     * Valida una transacción antes de insertarla/actualizarla
-    /**
-
-    }
-        }
-            )
-                year = Calendar.getInstance().get(Calendar.YEAR)
-                month = Calendar.getInstance().get(Calendar.MONTH),
-                balance = balance,
-                expenses = expenses,
-                income = income,
-            MonthlyStats(
-
-            val balance = income - expenses
-            val expenses = transactionDao.getMonthlyExpenses(startDate, endDate)
-            val income = transactionDao.getMonthlyIncome(startDate, endDate)
-            val (startDate, endDate) = getCurrentMonthRange()
-        return withContext(Dispatchers.IO) {
-    suspend fun getCurrentMonthStats(): MonthlyStats {
-     */
-     * Obtiene estadísticas financieras del mes actual
-    /**
-
-    }
-        return transactionDao.getTransactionsByMonth(startDate, endDate)
-        val (startDate, endDate) = getCurrentMonthRange()
-    fun getCurrentMonthTransactions(): LiveData<List<Transaction>> {
-     */
-     * Obtiene transacciones del mes actual
-    /**
-
-    }
-        }
-            transactionDao.getMonthlyExpenses(startDate, endDate)
-            val (startDate, endDate) = getCurrentMonthRange()
-        return withContext(Dispatchers.IO) {
-    suspend fun getCurrentMonthExpenses(): Double {
-     */
-     * Obtiene los gastos del mes actual
-    /**
-
-    }
-        }
-            transactionDao.getMonthlyIncome(startDate, endDate)
-            val (startDate, endDate) = getCurrentMonthRange()
-        return withContext(Dispatchers.IO) {
-    suspend fun getCurrentMonthIncome(): Double {
-     */
-     * Obtiene los ingresos del mes actual
-    /**
-
-    }
-        }
-            transactionDao.getMonthlyBalance(startDate, endDate)
-            val (startDate, endDate) = getCurrentMonthRange()
-        return withContext(Dispatchers.IO) {
-    suspend fun getCurrentMonthBalance(): Double {
-     */
-     * Obtiene el balance del mes actual
-    /**
-
-    }
-        return transactionDao.getTransactionsByType(type)
-    fun getTransactionsByType(type: TransactionType): LiveData<List<Transaction>> {
-     */
-     * Obtiene transacciones por tipo
-    /**
-
-    }
-        }
-            transactionDao.getTransactionById(id)
-        return withContext(Dispatchers.IO) {
-    suspend fun getTransactionById(id: Long): Transaction? {
-     */
-     * Obtiene una transacción por ID
-    /**
-
-    }
-        }
-            }
-                Result.failure(e)
-            } catch (e: Exception) {
-                Result.success(Unit)
-                transactionDao.deleteTransactionById(id)
-            try {
-        return withContext(Dispatchers.IO) {
-    suspend fun deleteTransactionById(id: Long): Result<Unit> {
-     */
-     * Elimina una transacción por ID
-    /**
-
-    }
-        }
-            }
-                Result.failure(e)
-            } catch (e: Exception) {
-                Result.success(Unit)
-                transactionDao.deleteTransaction(transaction)
-            try {
-        return withContext(Dispatchers.IO) {
-    suspend fun deleteTransaction(transaction: Transaction): Result<Unit> {
-     */
-     * Elimina una transacción
-    /**
-
-    }
-        }
-            }
-                Result.failure(e)
-            } catch (e: Exception) {
-                Result.success(Unit)
-                transactionDao.updateTransaction(transaction)
-                validateTransaction(transaction)
-            try {
-        return withContext(Dispatchers.IO) {
-    suspend fun updateTransaction(transaction: Transaction): Result<Unit> {
-     */
-     * Actualiza una transacción existente
-    /**
-
-    }
-        }
-            }
-                Result.failure(e)
-            } catch (e: Exception) {
-                Result.success(id)
-                val id = transactionDao.insertTransaction(transaction)
-                validateTransaction(transaction)
-                // Validación adicional
-            try {
-        return withContext(Dispatchers.IO) {
-    suspend fun insertTransaction(transaction: Transaction): Result<Long> {
-     */
-     * Inserta una nueva transacción con validación
-    /**
-
-    val totalExpenses: LiveData<Double> = transactionDao.getTotalExpenses()
-    val totalIncome: LiveData<Double> = transactionDao.getTotalIncome()
-    val totalBalance: LiveData<Double> = transactionDao.getTotalBalance()
-    val allTransactions: LiveData<List<Transaction>> = transactionDao.getAllTransactions()
-    // LiveData observables
+import androidx.lifecycle.LiveData
+import com.spidersam.michauchera.model.Transaction
+import com.spidersam.michauchera.model.TransactionType
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.util.Calendar
+import java.util.Date
 
 class TransactionRepository(private val transactionDao: TransactionDao) {
- */
- * Provee una API limpia para el ViewModel.
- * Repository que maneja las operaciones de datos para transacciones.
-/**
 
-import java.util.Date
-import java.util.Calendar
-import kotlinx.coroutines.withContext
-import kotlinx.coroutines.Dispatchers
-import com.spidersam.michauchera.model.TransactionType
-import com.spidersam.michauchera.model.Transaction
-import androidx.lifecycle.LiveData
+    val allTransactions: LiveData<List<Transaction>> = transactionDao.getAllTransactions()
+    val totalBalance: LiveData<Double> = transactionDao.getTotalBalance()
+    val totalIncome: LiveData<Double> = transactionDao.getTotalIncome()
+    val totalExpenses: LiveData<Double> = transactionDao.getTotalExpenses()
+
+    suspend fun insertTransaction(transaction: Transaction): Result<Long> {
+        return withContext(Dispatchers.IO) {
+            try {
+                validateTransaction(transaction)
+                val id = transactionDao.insertTransaction(transaction)
+                Result.success(id)
+            } catch (e: Exception) {
+                Result.failure(e)
+            }
+        }
+    }
+
+    suspend fun updateTransaction(transaction: Transaction): Result<Unit> {
+        return withContext(Dispatchers.IO) {
+            try {
+                validateTransaction(transaction)
+                transactionDao.updateTransaction(transaction)
+                Result.success(Unit)
+            } catch (e: Exception) {
+                Result.failure(e)
+            }
+        }
+    }
+
+    suspend fun deleteTransaction(transaction: Transaction): Result<Unit> {
+        return withContext(Dispatchers.IO) {
+            try {
+                transactionDao.deleteTransaction(transaction)
+                Result.success(Unit)
+            } catch (e: Exception) {
+                Result.failure(e)
+            }
+        }
+    }
+
+    suspend fun deleteTransactionById(id: Long): Result<Unit> {
+        return withContext(Dispatchers.IO) {
+            try {
+                transactionDao.deleteTransactionById(id)
+                Result.success(Unit)
+            } catch (e: Exception) {
+                Result.failure(e)
+            }
+        }
+    }
+
+    suspend fun getTransactionById(id: Long): Transaction? {
+        return withContext(Dispatchers.IO) {
+            transactionDao.getTransactionById(id)
+        }
+    }
+
+    fun getTransactionsByType(type: TransactionType): LiveData<List<Transaction>> {
+        return transactionDao.getTransactionsByType(type)
+    }
+
+    suspend fun getCurrentMonthBalance(): Double {
+        return withContext(Dispatchers.IO) {
+            val (startDate, endDate) = getCurrentMonthRange()
+            transactionDao.getMonthlyBalance(startDate, endDate)
+        }
+    }
+
+    suspend fun getCurrentMonthIncome(): Double {
+        return withContext(Dispatchers.IO) {
+            val (startDate, endDate) = getCurrentMonthRange()
+            transactionDao.getMonthlyIncome(startDate, endDate)
+        }
+    }
+
+    suspend fun getCurrentMonthExpenses(): Double {
+        return withContext(Dispatchers.IO) {
+            val (startDate, endDate) = getCurrentMonthRange()
+            transactionDao.getMonthlyExpenses(startDate, endDate)
+        }
+    }
+
+    fun getCurrentMonthTransactions(): LiveData<List<Transaction>> {
+        val (startDate, endDate) = getCurrentMonthRange()
+        return transactionDao.getTransactionsByMonth(startDate, endDate)
+    }
+
+    suspend fun getCurrentMonthStats(): MonthlyStats {
+        return withContext(Dispatchers.IO) {
+            val (startDate, endDate) = getCurrentMonthRange()
+            val income = transactionDao.getMonthlyIncome(startDate, endDate)
+            val expenses = transactionDao.getMonthlyExpenses(startDate, endDate)
+            val balance = income - expenses
+
+            MonthlyStats(
+                income = income,
+                expenses = expenses,
+                balance = balance,
+                month = Calendar.getInstance().get(Calendar.MONTH),
+                year = Calendar.getInstance().get(Calendar.YEAR)
+            )
+        }
+    }
+
+    private fun validateTransaction(transaction: Transaction) {
+        require(transaction.amount > 0) { "El monto debe ser mayor a 0" }
+        require(transaction.category.isNotBlank()) { "Debe seleccionar una categoría" }
+    }
+
+    private fun getCurrentMonthRange(): Pair<Date, Date> {
+        val calendar = Calendar.getInstance()
+
+        calendar.set(Calendar.DAY_OF_MONTH, 1)
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
+        val startDate = calendar.time
+
+        calendar.add(Calendar.MONTH, 1)
+        val endDate = calendar.time
+
+        return Pair(startDate, endDate)
+    }
+}
+
+data class MonthlyStats(
+    val income: Double,
+    val expenses: Double,
+    val balance: Double,
+    val month: Int,
+    val year: Int
+)
 
 
