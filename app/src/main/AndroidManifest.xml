@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MiChauchera">
 
-        <!-- Pantalla principal (única con MAIN + LAUNCHER) -->
+        <!-- Pantalla principal con Navigation Component -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -24,17 +24,6 @@
             </intent-filter>
         </activity>
 
-        <!-- Nueva Transacción -->
-        <activity
-            android:name=".NuevaTransaccionActivity" />
-
-        <!-- Historial -->
-        <activity
-            android:name=".HistorialActivity" />
-
-        <!-- Configuración -->
-        <activity
-            android:name=".ConfiguracionActivity" />
 
     </application>
 

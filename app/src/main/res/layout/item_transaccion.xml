@@ -1,44 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp">
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="1dp">
 
-    <TextView
-        android:id="@+id/textoCategoria"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Categoría"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/textoMonto" />
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/textoMonto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="$0"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <ImageView
+            android:id="@+id/iconoCategoria"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="12dp"
+            android:background="@drawable/icono_categoria_bg"
+            android:src="@drawable/ic_category_default"
+            android:contentDescription="Icono categoría"
+            app:tint="#7C4DFF"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textoFecha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="11/11/2025"
-        android:textSize="12sp"
-        app:layout_constraintTop_toBottomOf="@id/textoCategoria"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/tvCategoria"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            tools:text="Mesada"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iconoCategoria"
+            app:layout_constraintEnd_toStartOf="@id/tvMonto" />
 
-    <TextView
-        android:id="@+id/textoTipo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ingreso"
-        android:textSize="12sp"
-        app:layout_constraintTop_toBottomOf="@id/textoMonto"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/tvDescripcion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="12sp"
+            android:textColor="#999999"
+            android:maxLines="1"
+            android:ellipsize="end"
+            tools:text="1 transacción"
+            app:layout_constraintTop_toBottomOf="@id/tvCategoria"
+            app:layout_constraintStart_toEndOf="@id/iconoCategoria"
+            app:layout_constraintEnd_toStartOf="@id/tvMonto" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="2dp"
+            android:textSize="11sp"
+            android:textColor="#CCCCCC"
+            android:visibility="gone"
+            tools:text="29/11/2025"
+            app:layout_constraintTop_toBottomOf="@id/tvDescripcion"
+            app:layout_constraintStart_toEndOf="@id/iconoCategoria"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/tvMonto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="$350000"
+            tools:textColor="#4CAF50"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/badgeTipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:background="@drawable/badge_tipo_bg"
+            tools:text="Ingreso"
+            tools:textColor="#4CAF50"
+            tools:backgroundTint="#E8F5E9"
+            app:layout_constraintTop_toBottomOf="@id/tvMonto"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnEditar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:visibility="gone"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_edit"
+            android:contentDescription="Editar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnEliminar" />
+
+        <ImageButton
+            android:id="@+id/btnEliminar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:visibility="gone"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_delete"
+            android:contentDescription="Eliminar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
+

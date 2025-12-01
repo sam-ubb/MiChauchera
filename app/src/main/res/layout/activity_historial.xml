@@ -1,113 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".HistorialActivity">
+    android:orientation="vertical"
+    android:background="#7C4DFF">
 
-    <TextView
-        android:id="@+id/tvTituloHistorial"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Historial"
-        android:textSize="24sp"
-        android:textColor="#ffffff"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/etBuscar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Buscar por categoría, monto o fecha"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/tvTituloHistorial"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <RadioGroup
-        android:id="@+id/grupoFiltros"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/etBuscar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <RadioButton
-            android:id="@+id/rbTodos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Todos"
-            android:checked="true" />
-
-        <RadioButton
-            android:id="@+id/rbIngresos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ingresos" />
-
-        <RadioButton
-            android:id="@+id/rbGastos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gastos" />
-    </RadioGroup>
-
+    <!-- Header con título -->
     <LinearLayout
-        android:id="@+id/llFechas"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/grupoFiltros"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:gravity="center_vertical"
+        android:padding="16dp">
 
-        <EditText
-            android:id="@+id/etFechaDesde"
+        <ImageView
+            android:id="@+id/btnRetroceder"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_revert"
+            android:contentDescription="Volver"
+            app:tint="@android:color/white" />
+
+        <TextView
+            android:id="@+id/tvTituloHistorial"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Desde"
-            android:inputType="date"
-            android:layout_weight="1" />
-
-        <EditText
-            android:id="@+id/etFechaHasta"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Hasta"
-            android:inputType="date"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:text="Historial"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
-    <Spinner
-        android:id="@+id/spinnerOrdenarPor"
-        android:layout_width="0dp"
+    <!-- Sección de filtros -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/llFechas"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:paddingTop="0dp">
 
+        <!-- Campo de búsqueda -->
+        <EditText
+            android:id="@+id/etBuscar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Buscar por categoría, monto o fecha..."
+            android:textColorHint="#CCCCCC"
+            android:textColor="@android:color/white"
+            android:background="@android:drawable/edit_text"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Filtros por tipo (Todas/Ingresos/Gastos) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <Button
+                android:id="@+id/btnTodas"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:text="Todas"
+                android:textSize="12sp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="#9575CD"
+                style="@style/Widget.MaterialComponents.Button" />
+
+            <Button
+                android:id="@+id/btnIngresos"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Ingresos"
+                android:textSize="12sp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="#9575CD"
+                style="@style/Widget.MaterialComponents.Button" />
+
+            <Button
+                android:id="@+id/btnGastos"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Gastos"
+                android:textSize="12sp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="#9575CD"
+                style="@style/Widget.MaterialComponents.Button" />
+        </LinearLayout>
+
+        <!-- Filtros de fecha -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Desde"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/white"
+                    android:layout_marginBottom="4dp" />
+
+                <EditText
+                    android:id="@+id/etFechaDesde"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:hint="dd/mm/aaaa"
+                    android:textSize="12sp"
+                    android:textColorHint="#CCCCCC"
+                    android:textColor="@android:color/white"
+                    android:background="@android:drawable/edit_text"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hasta"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/white"
+                    android:layout_marginBottom="4dp" />
+
+                <EditText
+                    android:id="@+id/etFechaHasta"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:hint="dd/mm/aaaa"
+                    android:textSize="12sp"
+                    android:textColorHint="#CCCCCC"
+                    android:textColor="@android:color/white"
+                    android:background="@android:drawable/edit_text"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Ordenar por -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ordenar por:"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btnOrdenarFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="Fecha ↑↓"
+                android:textSize="12sp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="#5E35B1"
+                style="@style/Widget.MaterialComponents.Button" />
+
+            <Button
+                android:id="@+id/btnOrdenarMonto"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:text="Monto"
+                android:textSize="12sp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="#9575CD"
+                style="@style/Widget.MaterialComponents.Button" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Lista de transacciones -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewTransacciones"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/spinnerOrdenarPor"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tvResumen" />
+        android:layout_weight="1"
+        android:background="@android:color/white"
+        android:padding="8dp"
+        tools:listitem="@layout/item_transaccion" />
 
-    <TextView
-        android:id="@+id/tvResumen"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Total de transacciones: 10, Balance: $1082500"
-        android:textSize="16sp"
-        android:textColor="#ffffff"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="@android:color/white"
+        android:gravity="center_vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvTotalTransacciones"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Total de transacciones: 10"
+            android:textSize="12sp"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/tvResumen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Balance: $1082500.00"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#7C4DFF" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <!-- Dashboard Principal -->
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.spidersam.michauchera.ui.fragments.DashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard">
+
+        <action
+            android:id="@+id/action_dashboard_to_transaccionForm"
+            app:destination="@id/transaccionFormFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+
+    <!-- Lista de Transacciones -->
+    <fragment
+        android:id="@+id/transaccionesFragment"
+        android:name="com.spidersam.michauchera.ui.fragments.TransaccionesFragment"
+        android:label="Transacciones"
+        tools:layout="@layout/fragment_transacciones">
+
+        <action
+            android:id="@+id/action_transacciones_to_transaccionForm"
+            app:destination="@id/transaccionFormFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+
+    <!-- Formulario de Transacción (Crear/Editar) -->
+    <fragment
+        android:id="@+id/transaccionFormFragment"
+        android:name="com.spidersam.michauchera.ui.fragments.TransaccionFormFragment"
+        android:label="Transacción"
+        tools:layout="@layout/fragment_transaccion_form">
+
+        <argument
+            android:name="transaccionId"
+            app:argType="long"
+            android:defaultValue="0L" />
+    </fragment>
+
+    <!-- Reportes y Estadísticas -->
+    <fragment
+        android:id="@+id/reportesFragment"
+        android:name="com.spidersam.michauchera.ui.fragments.ReportesFragment"
+        android:label="Reportes"
+        tools:layout="@layout/fragment_reportes" />
+
+    <!-- Configuración -->
+    <fragment
+        android:id="@+id/configuracionFragment"
+        android:name="com.spidersam.michauchera.ui.fragments.ConfiguracionFragment"
+        android:label="Configuración"
+        tools:layout="@layout/fragment_configuracion" />
+
+</navigation>
+

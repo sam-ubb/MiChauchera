@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">MiChauchera</string>
+
+    <!-- Navigation -->
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_transacciones">Transacciones</string>
+    <string name="nav_reportes">Reportes</string>
+    <string name="nav_configuracion">Configuración</string>
+
+    <!-- Arrays para Spinners -->
+    <string-array name="monedas">
+        <item>CLP - Peso Chileno</item>
+        <item>USD - Dólar</item>
+        <item>EUR - Euro</item>
+    </string-array>
+
+    <string-array name="formatos_fecha">
+        <item>dd/MM/yyyy</item>
+        <item>MM/dd/yyyy</item>
+        <item>yyyy-MM-dd</item>
+    </string-array>
 </resources>

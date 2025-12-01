@@ -8,7 +8,21 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- Colores personalizados para transacciones -->
-    <color name="income_green">#FF4CAF50</color>
-    <color name="expense_red">#FFF44336</color>
+    <color name="primary_purple">#7C4DFF</color>
+    <color name="primary_purple_dark">#651FFF</color>
+    <color name="balance_negative_red">#FFE53935</color>
+    <color name="income_green">#4CAF50</color>
+    <color name="expense_red">#F44336</color>
+    <color name="card_bg_mint">#C8F5E5</color>
+    <color name="card_bg_lavender">#E1D5FF</color>
+    <color name="card_bg_peach">#FFE4C4</color>
+    <color name="card_bg_yellow">#FFF9C4</color>
+
+    <!-- Colores de la app -->
+    <color name="app_primary">#7C4DFF</color>
+    <color name="app_accent">#7C4DFF</color>
+    <color name="app_background">#F5F5F5</color>
+    <color name="app_text_primary">#333333</color>
+    <color name="app_gray">#757575</color>
+    <color name="app_red">#EF5350</color>
 </resources>
