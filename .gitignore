@@ -126,3 +126,9 @@ keystore.properties
 # Android Profiler
 *.hprof
 
+# GitHub Copilot y herramientas de IA
+.idea/copilot*
+.idea/shelf/
+*.copilot
+.copilot/
+.github-copilot/
