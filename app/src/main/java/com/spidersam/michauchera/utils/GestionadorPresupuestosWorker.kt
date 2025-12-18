@@ -75,7 +75,8 @@ object GestionadorPresupuestosWorker {
             .getWorkInfosForUniqueWork(MonitoreoPresupuestosWorker.WORK_NAME)
         workInfos.addListener({
             try {
-                val workInfo = workInfos.get().firstOrNull()
+                val lista = workInfos.get()
+                val workInfo = if (lista.isNotEmpty()) lista[0] else null
                 val activo = workInfo?.state == WorkInfo.State.ENQUEUED ||
                              workInfo?.state == WorkInfo.State.RUNNING
                 callback(activo)

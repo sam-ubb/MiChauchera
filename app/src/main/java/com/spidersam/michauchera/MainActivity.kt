@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.spidersam.michauchera.utils.GestionadorPresupuestosWorker
+import com.spidersam.michauchera.utils.WorkManagerUtil
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,5 +20,8 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNav.setupWithNavController(navController)
+
+        WorkManagerUtil.configurarPresupuestoWorker(this)
+        GestionadorPresupuestosWorker.programarMonitoreoPeriodico(applicationContext)
     }
 }
